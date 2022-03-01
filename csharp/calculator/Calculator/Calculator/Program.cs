@@ -1,4 +1,5 @@
 ﻿using System;
+using Calculator.entities;
 
 namespace Calculator
 {
@@ -6,7 +7,7 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("May u want realize a math operation?");
+            Console.WriteLine("Do u want realize a math operation?");
             string answer = Console.ReadLine();
 
             if (answer != "yes")
@@ -19,7 +20,7 @@ namespace Calculator
                 int subAnswer = int.Parse(Console.ReadLine());
                 while (subAnswer != 0)
                 {
-
+                    Operator operation = new Operator();
                     Console.WriteLine();
                     Console.WriteLine("What simple operation u want?");
                     Console.WriteLine("1 - Addition;");
@@ -34,25 +35,27 @@ namespace Calculator
                     string[] number = Console.ReadLine().Split(' ');
                     int number1 = int.Parse(number[0]);
                     int number2 = int.Parse(number[1]);
+                    
                     switch (mathOperation)
                     {
                         case 1:
-                            Console.WriteLine($"(Addition) The result is: {number1 + number2}");
+                            Console.WriteLine(operation.Addition(number1, number2));
                             break;
                         case 2:
-                            Console.WriteLine($"(Subtraction) The result is: {number1 - number2}");
+                            Console.WriteLine(operation.Subtraction(number1, number2));
                             break;
                         case 3:
-                            Console.WriteLine($"(Multiplication) The result is: {number1 * number2}");
+                            Console.WriteLine(operation.Multiplication(number1, number2));
                             break;
                         case 4:
-                            Console.WriteLine($"(Division) The result is: {number1 / number2}");
+                            Console.WriteLine(operation.Division(number1, number2));
                             break;
                         default:
                             Console.WriteLine("Closing...");
                             break;
                     }
-                    Console.WriteLine("0 to Continue");
+                    Console.WriteLine();
+                    Console.WriteLine("1 to Continue");
                     subAnswer = int.Parse(Console.ReadLine());
                 }
             }
